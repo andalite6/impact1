@@ -1655,4 +1655,23 @@ def main():
             render_results_analyzer()
         elif st.session_state.current_page == "Report Generator":
             render_report_generator()
-        elif st.
+        elif st.session_state.current_page == "Citation Tool":
+            render_citation_tool()
+        elif st.session_state.current_page == "Insight Assistant":
+            render_insight_assistant()
+        elif st.session_state.current_page == "Run Tests":
+            render_run_tests()
+        else:
+            # Default to dashboard if invalid page
+            logger.warning(f"Invalid page requested: {st.session_state.current_page}")
+            st.session_state.current_page = "Dashboard"
+            render_dashboard()
+    
+    except Exception as e:
+        logger.critical(f"Critical application error: {str(e)}")
+        logger.critical(traceback.format_exc())
+        st.error(f"Critical application error: {str(e)}")
+        st.code(traceback.format_exc())
+
+if __name__ == "__main__":
+    main()
